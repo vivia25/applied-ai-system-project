@@ -1,0 +1,95 @@
+[
+  {
+    "id": "dog-puppy", "kind": "life_stage", "species": "dog", "min_age": 0, "max_age": 0,
+    "title": "Puppy care (under 1 year)",
+    "text": "Puppies need three to four small meals a day and several short walks rather than one long one, because their joints are still developing. A common rule of thumb is about five minutes of walking per month of age, up to twice a day. Schedule a vet visit for vaccination boosters every three to four weeks until about 16 weeks old.",
+    "limits": {"min_walk_minutes": 30, "max_walk_minutes": 45, "min_feeds": 3, "max_feeds": 4},
+    "plan": [
+      {"type": "feed", "time": "07:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "breakfast"},
+      {"type": "walk", "time": "07:30", "minutes": 10, "priority": 2, "repeat": "daily", "note": "short morning walk"},
+      {"type": "feed", "time": "12:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "lunch"},
+      {"type": "walk", "time": "13:00", "minutes": 10, "priority": 2, "repeat": "daily", "note": "short midday walk"},
+      {"type": "feed", "time": "18:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "dinner"},
+      {"type": "walk", "time": "19:00", "minutes": 10, "priority": 2, "repeat": "daily", "note": "short evening walk"},
+      {"type": "vet", "time": "10:00", "minutes": 45, "priority": 3, "repeat": "none", "day_offset": 7, "note": "vaccination booster"}
+    ]
+  },
+  {
+    "id": "dog-adult", "kind": "life_stage", "species": "dog", "min_age": 1, "max_age": 7,
+    "title": "Adult dog care (1 to 7 years)",
+    "text": "Most adult dogs do well on two meals a day, roughly twelve hours apart, and at least sixty minutes of walking or exercise spread over two or more outings. A yearly wellness exam with the vet is recommended.",
+    "limits": {"min_walk_minutes": 60, "max_walk_minutes": 120, "min_feeds": 2, "max_feeds": 2},
+    "plan": [
+      {"type": "feed", "time": "07:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "breakfast"},
+      {"type": "walk", "time": "07:30", "minutes": 30, "priority": 2, "repeat": "daily", "note": "morning walk"},
+      {"type": "feed", "time": "18:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "dinner"},
+      {"type": "walk", "time": "18:30", "minutes": 30, "priority": 2, "repeat": "daily", "note": "evening walk"}
+    ]
+  },
+  {
+    "id": "dog-senior", "kind": "life_stage", "species": "dog", "min_age": 8, "max_age": 99,
+    "title": "Senior dog care (8 years and older)",
+    "text": "Senior dogs usually need shorter, gentler walks, often three brief outings instead of two long ones, and two meals a day sized to their lower activity level. Vets recommend a wellness exam every six months for older dogs to catch age-related problems early.",
+    "limits": {"min_walk_minutes": 30, "max_walk_minutes": 60, "min_feeds": 2, "max_feeds": 3},
+    "plan": [
+      {"type": "feed", "time": "07:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "breakfast"},
+      {"type": "walk", "time": "08:00", "minutes": 15, "priority": 2, "repeat": "daily", "note": "gentle morning walk"},
+      {"type": "walk", "time": "13:00", "minutes": 15, "priority": 2, "repeat": "daily", "note": "gentle midday walk"},
+      {"type": "feed", "time": "18:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "dinner"},
+      {"type": "walk", "time": "18:30", "minutes": 15, "priority": 2, "repeat": "daily", "note": "gentle evening walk"},
+      {"type": "vet", "time": "10:00", "minutes": 60, "priority": 3, "repeat": "none", "day_offset": 7, "note": "senior wellness exam"}
+    ]
+  },
+  {
+    "id": "cat-kitten", "kind": "life_stage", "species": "cat", "min_age": 0, "max_age": 0,
+    "title": "Kitten care (under 1 year)",
+    "text": "Kittens grow fast and need three to four small meals a day. Cats are not walked. Kittens need a series of vet visits for vaccinations and deworming every three to four weeks until about 16 weeks old.",
+    "limits": {"min_walk_minutes": 0, "max_walk_minutes": 0, "min_feeds": 3, "max_feeds": 4},
+    "plan": [
+      {"type": "feed", "time": "07:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "breakfast"},
+      {"type": "feed", "time": "12:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "lunch"},
+      {"type": "feed", "time": "18:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "dinner"},
+      {"type": "vet", "time": "10:00", "minutes": 45, "priority": 3, "repeat": "none", "day_offset": 7, "note": "vaccination and deworming"}
+    ]
+  },
+  {
+    "id": "cat-adult", "kind": "life_stage", "species": "cat", "min_age": 1, "max_age": 10,
+    "title": "Adult cat care (1 to 10 years)",
+    "text": "Adult cats do well on two measured meals a day. Cats are not walked. A yearly vet wellness exam is recommended.",
+    "limits": {"min_walk_minutes": 0, "max_walk_minutes": 0, "min_feeds": 2, "max_feeds": 3},
+    "plan": [
+      {"type": "feed", "time": "07:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "breakfast"},
+      {"type": "feed", "time": "18:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "dinner"}
+    ]
+  },
+  {
+    "id": "cat-senior", "kind": "life_stage", "species": "cat", "min_age": 11, "max_age": 99,
+    "title": "Senior cat care (11 years and older)",
+    "text": "Senior cats often eat better with three smaller meals a day. Cats are not walked. A vet exam every six months is recommended because kidney and thyroid problems are common in older cats.",
+    "limits": {"min_walk_minutes": 0, "max_walk_minutes": 0, "min_feeds": 3, "max_feeds": 4},
+    "plan": [
+      {"type": "feed", "time": "07:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "breakfast"},
+      {"type": "feed", "time": "13:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "lunch"},
+      {"type": "feed", "time": "19:00", "minutes": 10, "priority": 3, "repeat": "daily", "note": "dinner"},
+      {"type": "vet", "time": "10:00", "minutes": 60, "priority": 3, "repeat": "none", "day_offset": 7, "note": "senior wellness exam"}
+    ]
+  },
+  {
+    "id": "dog-high-energy", "kind": "modifier", "species": "dog",
+    "title": "High-energy and working breeds",
+    "text": "High-energy and working breeds such as huskies, border collies, shepherds, retrievers, labradors and terriers, or any dog described as energetic, hyper, restless or destructive, need about fifty percent more exercise than average.",
+    "walk_factor": 1.5
+  },
+  {
+    "id": "dog-weight", "kind": "modifier", "species": "dog",
+    "title": "Overweight dogs",
+    "text": "An overweight or chubby dog on a diet for weight loss benefits from about twenty-five percent more walking, alongside measured portions recommended by the vet.",
+    "walk_factor": 1.25
+  },
+  {
+    "id": "dog-joints", "kind": "modifier", "species": "dog",
+    "title": "Dogs with arthritis or joint problems",
+    "text": "Dogs with arthritis, hip dysplasia, stiff joints or limping should get shorter, gentler walks, about forty percent less than usual, on soft ground. Ask the vet about pain management.",
+    "walk_factor": 0.6
+  }
+]
