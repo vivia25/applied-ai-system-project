@@ -1,0 +1,19 @@
+$ .venv/bin/python care_cli.py --name Biscuit --species dog --age 11 --yes stiff joints, limping after long walks
+
+Planner: offline rule-based (no ANTHROPIC_API_KEY)
+
+Agent trace:
+  - RETRIEVE: Senior dog care (8 years and older), Dogs with arthritis or joint problems
+  - LIMITS: walks 18-36 min/day, feeds 2-3/day
+  - PLAN (rules): 6 tasks; CHECK passed
+  - VERIFY: 6 tasks placed, 0 conflicts, meets guidelines
+
+Proposed 6 tasks for Biscuit. Review them, then approve to add.
+  Sun Nov 15 07:00-07:10  feed daily  breakfast
+  Sun Nov 15 08:00-08:10  walk daily  gentle morning walk (adjusted x0.60 for Dogs with arthritis or joint problems)
+  Sun Nov 15 13:00-13:10  walk daily  gentle midday walk (adjusted x0.60 for Dogs with arthritis or joint problems)
+  Sun Nov 15 18:00-18:10  feed daily  dinner
+  Sun Nov 15 18:30-18:40  walk daily  gentle evening walk (adjusted x0.60 for Dogs with arthritis or joint problems)
+  Sun Nov 22 10:00-11:00  vet  once   senior wellness exam
+Added 6 tasks. Conflicts now: none
+(log: <project>/logs/pawpal_ai.log)

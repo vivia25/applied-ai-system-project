@@ -1,0 +1,8 @@
+$ .venv/bin/python care_cli.py --name Mittens --species cat --age 3 --yes ate chocolate and is vomiting
+
+Planner: offline rule-based (no ANTHROPIC_API_KEY)
+
+Agent trace:
+  - SAFETY STOP: red-flag term 'chocolate'
+
+Your notes mention 'chocolate', which can be an emergency. Please contact a vet now. PawPal won't make a routine plan for this.

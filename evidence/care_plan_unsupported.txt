@@ -1,0 +1,8 @@
+$ .venv/bin/python care_cli.py --name Hopper --species other --age 2 --yes rabbit
+
+Planner: offline rule-based (no ANTHROPIC_API_KEY)
+
+Agent trace:
+  - RETRIEVE: no guideline for other age 2; stopping
+
+I have no care guidelines for this kind of pet, so I won't guess. Please ask your vet for a routine.

@@ -62,6 +62,8 @@ The features that helped most were having the assistant read and edit several fi
 - Describe one moment where you did not accept an AI suggestion as-is.
 - How did you evaluate or verify what the AI suggested?
 
+**A suggestion I accepted:** when I asked the AI to review my first design, it pointed out that the `Scheduler` kept its own list of tasks in addition to each pet's list, so the two could drift apart. It suggested the `Scheduler` store only the `Owner` and read tasks through `owner.get_all_tasks()`. I accepted this because it gives the system a single source of truth and automatically makes every scheduler feature work across all pets. It shaped the final design: the UML shows `Scheduler --> Owner : reads via get_all_tasks()`, and the scheduler methods all build on it.
+
 There were a few moments where I did not take the first answer as it came:
 
 - **Conflict detection:** the AI suggested a simpler version using `itertools.pairwise`, which only compares neighbouring tasks. I rejected that after checking it: it gave different results than my version, because a long task (a 2-hour vet visit) can overlap several later tasks, not just the next one. I kept comparing all pairs and used `itertools.combinations` instead, then confirmed it matched the earlier version on random data and added a test for the long-task case.

@@ -1,0 +1,126 @@
+{
+  "checks_passed": 18,
+  "checks_total": 18,
+  "results": [
+    {
+      "input": "dog, age 3, no notes",
+      "criteria": "retrieves only the adult-dog guideline",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "dog, age 3, no notes",
+      "criteria": "60-120 walk min/day and exactly 2 feeds",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "dog, age 2, \"very energetic husky\"",
+      "criteria": "retrieves high-energy modifier",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "dog, age 2, \"very energetic husky\"",
+      "criteria": "walking raised to >= 90 min/day",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "dog, age 10, \"stiff joints and arthritis\"",
+      "criteria": "arthritis modifier retrieved, walking <= 36 min/day",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "cat, age 4, \"energetic husky\"",
+      "criteria": "no walks scheduled (dog modifiers ignored)",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "dog, age 0 (puppy)",
+      "criteria": "one-off vet booster 7 days out",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "dog, age 3 + existing 07:00-08:00 vet",
+      "criteria": "tasks moved, 0 conflicts",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "dog, age 3 + day fully booked",
+      "criteria": "skips tasks with a warning, never double-books",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "species 'other'",
+      "criteria": "refuses instead of guessing",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "\"she ate chocolate and is vomiting\"",
+      "criteria": "safety stop telling owner to contact a vet",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "\"he is lethargic and very tired\"",
+      "criteria": "safety stop telling owner to contact a vet",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "600-character notes",
+      "criteria": "rejected with a message",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "fake LLM: valid plan",
+      "criteria": "accepted on first attempt",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "fake LLM: invalid plan, then fixed plan",
+      "criteria": "check fails, revision accepted",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "fake LLM: non-JSON, then invalid plan",
+      "criteria": "falls back to rule-based plan",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "fake LLM: walks a cat (twice)",
+      "criteria": "rejected, falls back, 0 walk minutes",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "dog, age 2, \"husky\" x5 runs",
+      "criteria": "identical plan every run",
+      "passed": true,
+      "kind": "check"
+    },
+    {
+      "input": "\"has the zoomies all day\"",
+      "criteria": "should retrieve high-energy modifier (synonym)",
+      "passed": false,
+      "kind": "limitation_probe"
+    },
+    {
+      "input": "\"she loves her blood-orange chew toy\"",
+      "criteria": "should plan normally (no emergency)",
+      "passed": false,
+      "kind": "limitation_probe"
+    }
+  ]
+}

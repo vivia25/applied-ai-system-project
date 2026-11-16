@@ -1,0 +1,45 @@
+$ .venv/bin/python main.py
+
+
+As added (unsorted)
+  14:00  vet   Rex      [todo]
+  08:00  walk  Rex      [todo]
+  14:00  feed  Rex      [todo]
+  09:00  feed  Mittens  [todo]
+  18:00  feed  Mittens  [todo]
+  08:00  walk  Mittens  [todo]
+
+Sorted by time
+  08:00  walk  Rex      [todo]
+  08:00  walk  Mittens  [todo]
+  09:00  feed  Mittens  [todo]
+  14:00  vet   Rex      [todo]
+  14:00  feed  Rex      [todo]
+  18:00  feed  Mittens  [todo]
+
+Only Mittens
+  08:00  walk  Mittens  [todo]
+  09:00  feed  Mittens  [todo]
+  18:00  feed  Mittens  [todo]
+
+Conflict check
+  Warning: walk (Sun 08:00-08:30) overlaps walk (08:00-08:20) for Rex and Mittens
+  Warning: vet (Sun 14:00-15:00) overlaps feed (14:00-14:15) for Rex
+
+Completed tasks
+  08:00  walk  Rex      [done]
+
+Pending tasks
+  08:00  walk  Mittens  [todo]
+  09:00  feed  Mittens  [todo]
+  14:00  vet   Rex      [todo]
+  14:00  feed  Rex      [todo]
+  18:00  feed  Mittens  [todo]
+  08:00  walk  Rex      [todo]
+
+Today's schedule
+  08:00  walk  Mittens  [todo]
+  09:00  feed  Mittens  [todo]
+  14:00  vet   Rex      [todo]
+  14:00  feed  Rex      [todo]
+  18:00  feed  Mittens  [todo]

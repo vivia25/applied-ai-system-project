@@ -1,0 +1,58 @@
+$ .venv/bin/python -m pytest -v
+
+============================= test session starts ==============================
+platform darwin -- Python 3.14.5, pytest-9.1.1, pluggy-1.7.0 -- <project>/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: <project>
+plugins: anyio-4.15.1
+collecting ... collected 47 items
+
+tests/test_care_agent.py::test_tokenize_stems_and_drops_stopwords PASSED [  2%]
+tests/test_care_agent.py::test_life_stage_boundaries[dog-0-dog-puppy] PASSED [  4%]
+tests/test_care_agent.py::test_life_stage_boundaries[dog-7-dog-adult] PASSED [  6%]
+tests/test_care_agent.py::test_life_stage_boundaries[dog-8-dog-senior] PASSED [  8%]
+tests/test_care_agent.py::test_life_stage_boundaries[cat-0-cat-kitten] PASSED [ 10%]
+tests/test_care_agent.py::test_life_stage_boundaries[cat-10-cat-adult] PASSED [ 12%]
+tests/test_care_agent.py::test_life_stage_boundaries[cat-15-cat-senior] PASSED [ 14%]
+tests/test_care_agent.py::test_unknown_species_has_no_guideline PASSED   [ 17%]
+tests/test_care_agent.py::test_modifiers_are_species_specific PASSED     [ 19%]
+tests/test_care_agent.py::test_rule_plan_always_passes_its_own_check[dog-0-] PASSED [ 21%]
+tests/test_care_agent.py::test_rule_plan_always_passes_its_own_check[dog-3-husky] PASSED [ 23%]
+tests/test_care_agent.py::test_rule_plan_always_passes_its_own_check[dog-3-overweight energetic lab] PASSED [ 25%]
+tests/test_care_agent.py::test_rule_plan_always_passes_its_own_check[dog-12-arthritis] PASSED [ 27%]
+tests/test_care_agent.py::test_rule_plan_always_passes_its_own_check[cat-0-] PASSED [ 29%]
+tests/test_care_agent.py::test_rule_plan_always_passes_its_own_check[cat-5-] PASSED [ 31%]
+tests/test_care_agent.py::test_rule_plan_always_passes_its_own_check[cat-14-] PASSED [ 34%]
+tests/test_care_agent.py::test_check_catches_bad_plans PASSED            [ 36%]
+tests/test_care_agent.py::test_parse_llm_plan_handles_wrapped_json PASSED [ 38%]
+tests/test_care_agent.py::test_agent_does_not_modify_schedule_until_approved PASSED [ 40%]
+tests/test_care_agent.py::test_agent_moves_tasks_around_existing_booking PASSED [ 42%]
+tests/test_care_agent.py::test_red_flag_stops_planning PASSED            [ 44%]
+tests/test_care_agent.py::test_llm_exception_falls_back_to_rules PASSED  [ 46%]
+tests/test_care_agent.py::test_llm_prompt_contains_retrieved_guideline PASSED [ 48%]
+tests/test_pawpal.py::test_mark_complete_changes_status PASSED           [ 51%]
+tests/test_pawpal.py::test_add_task_increases_pet_task_count PASSED      [ 53%]
+tests/test_pawpal.py::test_tasks_sorted_by_time PASSED                   [ 55%]
+tests/test_pawpal.py::test_filter_by_pet_and_status PASSED               [ 57%]
+tests/test_pawpal.py::test_recurring_task_creates_next_occurrence_once PASSED [ 59%]
+tests/test_pawpal.py::test_next_occurrence_is_relative_to_completion_day PASSED [ 61%]
+tests/test_pawpal.py::test_non_recurring_task_creates_nothing PASSED     [ 63%]
+tests/test_pawpal.py::test_conflict_detection PASSED                     [ 65%]
+tests/test_pawpal.py::test_conflict_warnings_same_pet_and_different_pets PASSED [ 68%]
+tests/test_pawpal.py::test_no_conflicts_gives_no_warnings PASSED         [ 70%]
+tests/test_pawpal.py::test_owner_with_no_pets_or_tasks_is_safe PASSED    [ 72%]
+tests/test_pawpal.py::test_pet_with_no_tasks_is_ignored_by_scheduler PASSED [ 74%]
+tests/test_pawpal.py::test_sorting_works_across_pets_when_added_out_of_order PASSED [ 76%]
+tests/test_pawpal.py::test_same_time_tasks_ordered_by_priority PASSED    [ 78%]
+tests/test_pawpal.py::test_completed_tasks_leave_schedule_and_conflicts PASSED [ 80%]
+tests/test_pawpal.py::test_daily_schedule_only_includes_requested_day PASSED [ 82%]
+tests/test_pawpal.py::test_recurrence_crosses_month_boundary PASSED      [ 85%]
+tests/test_pawpal.py::test_next_occurrence_copies_task_details PASSED    [ 87%]
+tests/test_pawpal.py::test_back_to_back_tasks_do_not_conflict PASSED     [ 89%]
+tests/test_pawpal.py::test_long_task_conflicts_with_every_task_it_covers PASSED [ 91%]
+tests/test_pawpal.py::test_conflict_across_midnight PASSED               [ 93%]
+tests/test_pawpal.py::test_unassigned_task_warning_does_not_crash PASSED [ 95%]
+tests/test_pawpal.py::test_filter_unknown_pet_returns_empty_list PASSED  [ 97%]
+tests/test_pawpal.py::test_pet_remove_and_list_tasks PASSED              [100%]
+
+============================== 47 passed in 0.02s ==============================

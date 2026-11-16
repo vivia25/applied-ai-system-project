@@ -1,0 +1,19 @@
+$ .venv/bin/python care_cli.py --demo-conflict --name Luna --species dog --age 2 --yes energetic husky
+
+Planner: offline rule-based (no ANTHROPIC_API_KEY)
+
+Agent trace:
+  - RETRIEVE: Adult dog care (1 to 7 years), High-energy and working breeds
+  - LIMITS: walks 90-180 min/day, feeds 2-2/day
+  - PLAN (rules): 4 tasks; CHECK passed
+  - PLACE: feed 07:00 -> 08:00 to avoid a conflict
+  - PLACE: walk 07:30 -> 08:15 to avoid a conflict
+  - VERIFY: 4 tasks placed, 0 conflicts, meets guidelines
+
+Proposed 4 tasks for Luna. Review them, then approve to add.
+  Sun Nov 15 08:00-08:10  feed daily  breakfast
+  Sun Nov 15 08:15-09:00  walk daily  morning walk (adjusted x1.50 for High-energy and working breeds)
+  Sun Nov 15 18:00-18:10  feed daily  dinner
+  Sun Nov 15 18:30-19:15  walk daily  evening walk (adjusted x1.50 for High-energy and working breeds)
+Added 4 tasks. Conflicts now: none
+(log: <project>/logs/pawpal_ai.log)
