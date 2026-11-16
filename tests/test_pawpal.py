@@ -263,3 +263,16 @@ def test_filter_unknown_pet_returns_empty_list():
     rex.add_task(make_task())
 
     assert sched.filter_tasks(pet_name="Nobody") == []
+
+
+def test_pet_remove_and_list_tasks():
+    pet = Pet("Rex", 3, "male", "dog")
+    walk, feed = make_task(), Task(TaskType.FEED, datetime(2026, 10, 17, 9, 0))
+    pet.add_task(walk)
+    pet.add_task(feed)
+    walk.mark_complete()
+
+    assert pet.get_tasks(completed=False) == [feed]
+    assert pet.remove_task(feed) is True and feed.pet is None
+    assert pet.remove_task(feed) is False
+    assert pet.get_tasks() == [walk]

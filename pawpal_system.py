@@ -98,6 +98,18 @@ class Pet:
         if task not in self.tasks:
             self.tasks.append(task)
 
+    def remove_task(self, task: Task) -> bool:
+        """Detach task from this pet. Returns False if the task wasn't this pet's."""
+        if task not in self.tasks:
+            return False
+        self.tasks.remove(task)
+        task.pet = None
+        return True
+
+    def get_tasks(self, completed: bool | None = None) -> List[Task]:
+        """This pet's tasks, optionally only done (True) or not done (False)."""
+        return [t for t in self.tasks if completed is None or t.completed == completed]
+
 
 @dataclass
 class Owner:
