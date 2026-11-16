@@ -1,7 +1,11 @@
 import streamlit as st
 from datetime import date, datetime, time
 
+from pawpal_ai.agent import CarePlanAgent, apply_plan, claude_llm
+from pawpal_ai.logging_setup import setup_logging
 from pawpal_system import Owner, Pet, Recurrence, Scheduler, Task, TaskType
+
+setup_logging()
 
 st.set_page_config(page_title="PawPal+", page_icon="🐾", layout="centered")
 
@@ -54,17 +58,19 @@ first_name = st.text_input("First name", value=owner.first_name)
 owner.first_name = first_name  # mutate the stored object; it survives reruns
 
 st.subheader("Pets")
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 with col1:
     pet_name = st.text_input("Pet name", value="Mochi")
 with col2:
     species = st.selectbox("Species", ["dog", "cat", "other"])
+with col3:
+    pet_age = st.number_input("Age (years, 0 = under 1)", min_value=0, max_value=40, value=1)
 
 if st.button("Add pet"):
-    owner.add_pet(Pet(pet_name, age=1, gender="unknown", animal_type=species))
+    owner.add_pet(Pet(pet_name, age=int(pet_age), gender="unknown", animal_type=species))
 
 if owner.pets:
-    st.write("Your pets:", ", ".join(f"{p.name} ({p.animal_type})" for p in owner.pets))
+    st.write("Your pets:", ", ".join(f"{p.name} ({p.animal_type}, {p.age}y)" for p in owner.pets))
 else:
     st.info("No pets yet. Add one above.")
 
@@ -119,6 +125,58 @@ if owner.pets:
             st.success(f"Added {task_type} for {pet.name} at {start:%H:%M}")
 else:
     st.info("Add a pet first, then you can add tasks.")
+
+st.subheader("🤖 AI care plan")
+if owner.pets:
+    llm = claude_llm()
+    st.caption(
+        "Retrieves care guidelines for your pet's species and age, drafts a daily plan, checks it "
+        "against those guidelines, and fits it around your existing tasks. "
+        + ("Planner: Claude, checked against the guidelines." if llm else
+           "Planner: offline rule-based (set ANTHROPIC_API_KEY to use Claude).")
+    )
+    ai_pet_name = st.selectbox("Plan for", [p.name for p in owner.pets], key="ai_pet")
+    ai_notes = st.text_area("Anything we should know? (breed, energy, health)",
+                            placeholder="e.g. energetic husky, a bit overweight", max_chars=500)
+    if st.button("Draft care plan"):
+        ai_pet = next(p for p in owner.pets if p.name == ai_pet_name)
+        st.session_state.ai_plan = (ai_pet.name, CarePlanAgent(scheduler, llm=llm).plan(ai_pet, ai_notes))
+
+    if "ai_plan" in st.session_state:
+        plan_pet_name, care_plan = st.session_state.ai_plan
+        if not care_plan.ok:
+            st.error(care_plan.message)
+        else:
+            st.info(care_plan.message)
+            st.write("**Guidelines used:** " + "; ".join(care_plan.sources))
+            st.table([
+                {
+                    "When": f"{t.due_time:%a %H:%M}-{t.end_time:%H:%M}",
+                    "Task": t.task_type.value,
+                    "Repeats": t.recurrence.value if t.recurrence else "once",
+                    "Why": care_plan.notes[id(t)],
+                }
+                for t in care_plan.tasks
+            ])
+            for w in care_plan.warnings:
+                st.warning(w)
+            approve, discard = st.columns(2)
+            if approve.button("✅ Approve and add to schedule"):
+                plan_pet = next(p for p in owner.pets if p.name == plan_pet_name)
+                added = apply_plan(plan_pet, care_plan)
+                del st.session_state.ai_plan
+                st.session_state.flash = f"Added {added} AI-planned tasks for {plan_pet.name}."
+                st.rerun()
+            if discard.button("Discard plan"):
+                del st.session_state.ai_plan
+                st.rerun()
+        with st.expander("How the agent reached this plan"):
+            for step in care_plan.trace:
+                st.text(step)
+else:
+    st.info("Add a pet first to get an AI care plan.")
+
+st.divider()
 
 if "flash" in st.session_state:  # message saved across the rerun below
     st.success(st.session_state.pop("flash"))
